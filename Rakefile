@@ -10,3 +10,8 @@ begin
 rescue LoadError
   puts "Blacksmith needed only to push to the Forge"
 end
+
+desc "Run acceptance tests"
+RSpec::Core::RakeTask.new(:acceptance) do |t|
+  t.pattern = 'spec/acceptance'
+end
