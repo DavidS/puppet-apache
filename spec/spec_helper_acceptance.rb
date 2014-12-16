@@ -25,7 +25,7 @@ RSpec.configure do |c|
     puppet_module_install(:source => proj_root, :module_name => 'apache')
     hosts.each do |host|
       [ 'example42-puppi', 'example42-monitor', 'example42-firewall',
-        'example42-iptables', 'example42-concat', 'puppetlabs-stdlib'
+        'example42-iptables', 'puppetlabs-stdlib'
       ].each do |mod|
         on host, puppet('module', 'install', mod), { :acceptable_exit_codes => [0,1] }
       end

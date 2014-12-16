@@ -11,6 +11,7 @@ rescue LoadError
   puts "Blacksmith needed only to push to the Forge"
 end
 
+# set BEAKER_set to the basename of the nodeset you want to test against
 desc "Run acceptance tests"
 RSpec::Core::RakeTask.new(:acceptance) do |t|
   t.pattern = 'spec/acceptance'
