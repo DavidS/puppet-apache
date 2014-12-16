@@ -36,5 +36,22 @@ describe 'apache class' do
     end
   end
 
+  context 'nonstandard port' do
+    it 'should work idempotently with no errors' do
+      pp = <<-EOS
+      class { 'apache': }
+      apache::listen { '81': }
+      EOS
+
+      # Run it twice and test for idempotency
+      apply_manifest(pp, :catch_failures => true)
+      apply_manifest(pp, :catch_changes  => true)
+    end
+
+    describe port(81) do
+      it { should be_listening }
+    end
+  end
+
 end
 
