@@ -34,6 +34,14 @@ describe 'apache class' do
     describe port(80) do
       it { should be_listening }
     end
+
+    describe command('curl http://localhost') do
+      its(:exit_status) { should eq 0 }
+    end
+
+    describe command('curl http://localhost:81') do
+      its(:exit_status) { should be > 0 }
+    end
   end
 
   context 'nonstandard port' do
